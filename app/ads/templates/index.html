@@ -1,0 +1,41 @@
+<!-- templates/landing_page.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batt Ad Management</title>
+    <script>
+        // JavaScript function to filter ads based on search input
+        function filterAds() {
+            var query = document.getElementById('search').value.toLowerCase();
+            var ads = document.getElementsByClassName('ad');
+
+            for (var i = 0; i < ads.length; i++) {
+                var title = ads[i].getElementsByClassName('ad-title')[0].innerText.toLowerCase();
+                ads[i].style.display = title.includes(query) ? 'block' : 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+    {% block content %}
+        <h2>All Ads</h2>
+
+        <!-- Search Bar -->
+        <label for="search">Search by Title:</label>
+        <input type="text" id="search" placeholder="Enter title" oninput="filterAds()">
+
+        {% for ad in ads %}
+            <div class="ad">
+                <a href="/view_ad/{{ ad.id }}">
+                    <h3 class="ad-title">{{ ad.title }}</h3>
+                </a>
+                <img src="{{ ad.image.url }}" alt="Ad Image">
+                <p>Redirect Link: <a href="{{ ad.redirect_link }}" target="_blank">{{ ad.redirect_link }}</a></p>
+                <p>Impressions: {{ ad.impressions }}</p>
+            </div>
+        {% endfor %}
+    {% endblock %}
+</body>
+</html>

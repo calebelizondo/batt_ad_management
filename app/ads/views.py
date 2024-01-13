@@ -26,3 +26,7 @@ def embed_ad(request, ad_id):
     ad.impressions += 1
     ad.save()
     return render(request, 'embed_ad.html', {'ad': ad})
+
+def landing_page(request):
+    ads = Advertisement.objects.all()
+    return render(request, 'index.html', {'ads': ads})   
