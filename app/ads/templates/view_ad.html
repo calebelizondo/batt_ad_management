@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+</head>
+<body>
+    {% block content %}
+    <h2>Ad Details</h2>
+    <img src="{{ ad.image.url }}" alt="Ad Image">
+    <p>Redirect Link: <a href="{{ ad.redirect_url }}" target="_blank">{{ ad.redirect_link }}</a></p>
+    <p>Impressions: {{ ad.impressions }}</p>
+    {% endblock %}
+</body>
+</html>

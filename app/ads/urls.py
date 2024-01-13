@@ -17,10 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
-from .views import render_interface
+from .views import render_interface, upload_ad, view_ad, embed_ad
 
 app_name = "app"
 
 urlpatterns = [
     path("", render_interface, name="interface"),
+    path('upload/', upload_ad, name='upload_ad'),
+    path('view_ad/<int:ad_id>/', view_ad, name='view_ad'),
+    path('view_ad/<int:ad_id>/embed/', embed_ad, name='embed_ad'),
 ]

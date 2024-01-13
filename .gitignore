@@ -160,3 +160,11 @@ cython_debug/
 #.idea/
 
 **/migrations/*.py
+
+**/ad_assets/*
+**/media/media/*
+
+**/media/*.png
+**/media/*.jpg
+**/media/*.jpeg
+**/media/*.gif
