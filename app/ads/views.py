@@ -1,12 +1,10 @@
 # ads/views.py
 from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib.auth.decorators import login_required
 from .forms import AdvertisementForm
 from .models import Advertisement
 
-
-def render_interface(request):
-    return render(request, "upload.html")
-
+@login_required
 def upload_ad(request):
     if request.method == 'POST':
         form = AdvertisementForm(request.POST, request.FILES)
@@ -17,6 +15,7 @@ def upload_ad(request):
         form = AdvertisementForm()
     return render(request, 'upload.html', {'form': form})
 
+@login_required
 def view_ad(request, ad_id):
     ad = Advertisement.objects.get(pk=ad_id)
     return render(request, 'view_ad.html', {'ad': ad})
@@ -27,6 +26,7 @@ def embed_ad(request, ad_id):
     ad.save()
     return render(request, 'embed_ad.html', {'ad': ad})
 
+@login_required
 def landing_page(request):
     ads = Advertisement.objects.all()
     return render(request, 'index.html', {'ads': ads})   

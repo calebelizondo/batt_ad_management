@@ -66,27 +66,11 @@
         }
     </script>
 </head>
-<body>
-    {% block content %}
-        <h2>Batt Ads Management</h2>
-
-        <!-- Add Button -->
-        <button id="admin" onclick="window.location.href='/admin/'">Admin</button>
-        <button id="addButton" onclick="window.location.href='/upload/'">Upload New Ad</button>
-
-        <!-- Search Bar -->
-        <label for="search">Search by Title:</label>
-        <input type="text" id="search" placeholder="Enter title" oninput="filterAds()" >
-
-        {% for ad in ads %}
-            <div class="ad">
-                <a href="/view_ad/{{ ad.id }}">
-                    <h3 class="ad-title">{{ ad.title }}</h3>
-                </a>
-                <img src="{{ ad.image.url }}" alt="Ad Image">
-                <p>Impressions: {{ ad.impressions }}</p>
-            </div>
-        {% endfor %}
-    {% endblock %}
-</body>
-</html>
+{% block content %}
+    <h2>Login</h2>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+{% endblock %}
