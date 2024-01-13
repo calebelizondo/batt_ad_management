@@ -17,8 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
+from .views import render_interface
+
+app_name = "app"
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('ads.urls'))
+    path("", render_interface, name="interface"),
 ]
